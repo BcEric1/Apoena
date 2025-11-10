@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoena - Descubra o Prazer de Viajar</title>
+    <link rel="stylesheet" href="/public/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="#sobre">Quem sou eu</a>
+                <a href="#contato">Contato</a>
+                <a href="#quiz">Quiz</a> <!-- Ainda não feito-->
+            </nav>
+        </div>
+    </header>
+
+    <section class="secao-principal">
+        <div class="conteudo-principal">
+            <h2 class="titulo">Abraçe a Natureza</h2>
+        </div>
+    </section>
+
+    <section id="sobre" class="secao-sobre">
+        <div class="container secao-flex">
+            <div class="sobre-image-wrapper">
+            </div>
+            <div class="sobre-text-content">
+                <h3>Mais sobre meu projeto</h3>
+                <p>
+                    Somos apaixonados por viagens e acreditamos que cada aventura deve ser divertida e inesperada como
+                    abrir um mapa do tesouro! Vem com a gente, porque o mundo é um playground cheio de surpresas
+                    esperando por você.
+                </p>
+                <a href="#" class="botao botao-principal">Saiba mais</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="secao-contato">
+        <div class="container contato-grid">
+            <div class="contato-info">
+                <h4>Fale comigo</h4>
+                <p>Se interessou pelo meu trabalho? Preencha o formulário, e entrarei em contato em breve! Será um
+                    prazer
+                    falar com você.</p>
+            </div>
+            <!-- pensando em tirar o formulário-->
+            <form class="contato-form">
+                <div class="form-group-inline">
+                    <div class="input-wrapper">
+                        <label for="nome">Nome (obrigatório)</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="sobrenome">Sobrenome</label>
+                        <input type="text" id="sobrenome" name="sobrenome">
+                    </div>
+                </div>
+
+                <div class="input-wrapper full-width">
+                    <label for="email">E-mail (obrigatório)</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="input-wrapper full-width">
+                    <label for="mensagem">Mensagem (obrigatório)</label>
+                    <textarea id="mensagem" name="mensagem" rows="6" required></textarea>
+                </div>
+
+                <button type="submit" class="botao botao-secundario">Enviar</button>
+            </form>
+            <!-- tudo isso-->
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-titulo">
+                <h5>Apoena</h5>
+                <p class="squarespace-note">Feito por Eric Barbosa Costa <br> <a
+                        href="https://github.com/BcEric1">GitHub</a></p>
+            </div>
+
+            <div class="footer-detalhes">
+                <h5>Localização</h5>
+                <address>
+                    Rua Haddock Lobo<br>
+                    São Paulo, SP
+                </address>
+            </div>
+
+            <div class="footer-detalhes">
+                <h5>Contato</h5>
+                <p>
+                    <a href="mailto:email@exemplo.com">eric.costa@sptech.school</a><br>
+                    (11) 960799143
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
