@@ -1,7 +1,10 @@
 :root {
-    --cor-fundo: #bde0e5; /* Azul claro/verde água */
-    --cor-texto-principal: #5d363d; /* Marrom escuro */
-    --cor-texto-secundario: #4b666a; /* Cinza/Azul sutil para texto normal */
+    --cor-fundo: #bde0e5;
+    /* Azul claro/verde água */
+    --cor-texto-principal: #5d363d;
+    /* Marrom escuro */
+    --cor-texto-secundario: #4b666a;
+    /* Cinza/Azul sutil para texto normal */
     --cor-botao-fundo: #6c4249;
     --cor-fundo-input: #e0f2f5;
     --fonte-serif: 'Momo Trust Display', serif;
@@ -14,7 +17,7 @@
     box-sizing: border-box;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
@@ -27,23 +30,50 @@ body {
 
 /* centralizador e limitador dos conteúdos*/
 .container {
+    display: flex;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--fonte-serif);
     color: var(--cor-texto-principal);
     font-weight: 700;
 }
 
-h2 { font-size: 4rem; margin-bottom: 0.5rem; }
-h3 { font-size: 3rem; margin-bottom: 1.5rem; }
-h4 { font-size: 2.5rem; margin-bottom: 1rem; }
-h5 { font-size: 2rem; margin-bottom: 0.5rem; }
-h6 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--cor-texto-principal);}
+h2 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+h4 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+h5 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+h6 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--cor-texto-principal);
+}
 
 a {
     text-decoration: none;
@@ -145,7 +175,7 @@ a:hover {
 .conteudo-principal {
     padding: 20px;
     text-shadow: 10px;
-    color: var(--cor-texto-principal); 
+    color: var(--cor-texto-principal);
     max-width: 80%;
     margin: 0 auto;
 }
@@ -161,7 +191,7 @@ a:hover {
     color: var(--cor-fundo);
     text-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     border: 1px;
-    
+
 }
 
 /* 3. seção Sobre projeto*/
@@ -174,13 +204,18 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 50px;
+    margin-bottom: 50px;
+}
+
+.secao-sobre .secao-flex:nth-child(even) { /*cada vez */
+    flex-direction: row-reverse;
 }
 
 .sobre-image-wrapper {
     flex: 1;
-    min-height: 700px;
+    min-height: 600px;
     background-color: #ccc;
-    
+
     background-image: url('/public/assets/2.jpg');
     background-size: cover;
     background-position: center;
@@ -188,6 +223,10 @@ a:hover {
     border: 1px;
     border-bottom-left-radius: 10px;
     border-radius: 10px;
+}
+
+.secao-sobre .secao-flex:nth-child(even) .sobre-image-wrapper {
+    background-image: url('/public/assets/2.jpg');
 }
 
 
@@ -271,7 +310,8 @@ a:hover {
 
 
 .contato-form .botao-secundario {
-    align-self: flex-start; /* alinha botão */
+    align-self: flex-start;
+    /* alinha botão */
     margin-top: 10px;
 }
 
@@ -283,7 +323,8 @@ a:hover {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr; /* largura das colunas*/
+    grid-template-columns: 2fr 1fr 1fr;
+    /* largura das colunas*/
     gap: 30px;
 }
 
@@ -338,8 +379,28 @@ a:hover {
 }
 
 @media (max-width: 600px) {
-    h2 { font-size: 3rem; }
-    h3 { font-size: 2.5rem; }
+    .secao-flex {
+        flex-direction: column;
+        /* Empilha a imagem e o texto verticalmente */
+        text-align: center;
+    }
+
+    /* Remove a reversão para que a ordem seja sempre a mesma em telas pequenas */
+    .secao-sobre .secao-flex:nth-child(even) {
+        flex-direction: column;
+    }
+
+    .sobre-text-content {
+        padding-right: 0;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    h3 {
+        font-size: 2.5rem;
+    }
 
     .header .container {
         flex-direction: column;
