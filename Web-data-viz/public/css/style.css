@@ -166,7 +166,7 @@ a:hover {
     text-align: center;
     background-color: #000;
     /* configuração de imagem*/
-    background-image: url('/public/assets/img.jpg');
+    background-image: url('/assets/img.jpg');
     background-size: cover;
     background-position: center 30%;
     background-repeat: no-repeat;
@@ -216,7 +216,7 @@ a:hover {
     min-height: 600px;
     background-color: #ccc;
 
-    background-image: url('/public/assets/2.jpg');
+    background-image: url('/assets/2.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -226,7 +226,7 @@ a:hover {
 }
 
 .secao-sobre .secao-flex:nth-child(even) .sobre-image-wrapper {
-    background-image: url('/public/assets/2.jpg');
+    background-image: url('/assets/2.jpg');
 }
 
 
