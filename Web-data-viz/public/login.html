@@ -1,28 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/css/loginCadastro.css">
+    <link rel="stylesheet" href="./css/loginCadastro.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+    </style>
 </head>
+
 <body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="./principal.html">Home</a>
+                <a href="./cadastro.html">Cadastro</a>
+                <a href="./login.html">Login</a>
+                <!--<a href="./quiz/quiz.html">Quiz</a>--> <!--feito-->
+            </nav>
+        </div>
+    </header>
+
     <div class="wrapper">
-        <form action="">
+        <form action="" id="formularioCadastro">
             <h1>Login</h1>
             <div class="input-caixa">
-                <input type="text" placeholder="Email">
+                <input type="text" placeholder="Email" id="iptEmail">
             </div>
             <div class="input-caixa">
-                <input type="password" placeholder="Senha">
+                <input type="password" placeholder="Senha" id="iptSenha">
             </div>
             <div class="relembrar-senha">
                 <label> <input type="checkbox">Lembrar-me</label>
                 <a href="#">Esqueci a senha</a>
             </div>
-            <button type="submit" class="button">Login</button>
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                    <span id="mensagem_erro"></span>
+                </div>
+                <button type="submit" class="button">Login</button>
 
         </form>
     </div>
 </body>
+
 </html>
+<script>
+    document.getElementById("formularioCadastro").addEventListener("submit", function (event) {
+        event.preventDefault(); // Impede o recarregamento da página
+        entrar()
+    });
+    function entrar() {
+        //aguardar();
+
+        var emailVar = iptEmail.value;
+        var senhaVar = iptSenha.value;
+
+        if (emailVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Preencha todos os campos";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+
+                    setTimeout(function () {
+                        window.location = "/quiz/aquizteste.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+                cardErro.style.display = "block";
+                mensagem_erro.innerHTML =
+                    "E-mail ou senha errados";
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+</script>

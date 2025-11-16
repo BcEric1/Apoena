@@ -1,36 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/public/css/loginCadastro.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+    </style>
+  <link rel="stylesheet" href="./css/loginCadastro.css">
 </head>
+
 <body>
 
-    <div class="wrapper">
-        <form action="">
-            <h1>Login</h1>
-            <div class="input-caixa">
-                <input type="text" placeholder="Nome">
-            </div>
-            <div class="input-caixa">
-                <input type="text" placeholder="Email">
-            </div>
-            <div class="input-caixa">
-                <input type="text" placeholder="Telefone">
-            </div>
+  <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="./principal.html">Home</a>
+                <a href="./cadastro.html">Cadastro</a>
+                <a href="./login.html">Login</a>
+                <!--<a href="./quiz/quiz.html">Quiz</a>--> <!--feito-->
+            </nav>
+        </div>
+    </header>
 
-            <div class="input-caixa">
-                <input type="password" placeholder="Senha">
-            </div>
-            <div class="relembrar-senha">
-                <label> <input type="checkbox">Lembrar-me</label>
-                <a href="#">Esqueci a senha</a>
-            </div>
-            <button type="submit" class="button">Login</button>
 
-        </form>
-    </div>
+  <div class="wrapper">
+    <form action="" id="formularioCadastro">
+      <h1>Cadastro</h1>
+      <div class="input-caixa">
+        <input type="text" placeholder="Nome" id="iptNome">
+      </div>
+      <div class="input-caixa">
+        <input type="text" placeholder="Email" id="iptEmail">
+      </div>
+      <div class="input-caixa">
+        <input type="password" placeholder="Senha" id="iptSenha">
+      </div>
+      <div class="input-caixa">
+        <input type="password" placeholder="Senha" id="iptConfirmarSenha">
+      </div>
+      <div class="relembrar-senha">
+        <label> <input type="checkbox">Lembrar-me</label>
+        <a href="#">Esqueci a senha</a>
+      </div>
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+      <button type="submit" class="button">Cadastrar</button>
+
+    </form>
+  </div>
 </body>
+
 </html>
+<script>
+
+  document.getElementById("formularioCadastro").addEventListener("submit", function (event) {
+    event.preventDefault(); // Impede o recarregamento da página
+    cadastrar();
+  });
+  function cadastrar() {
+    var nome = iptNome.value;
+    var email = iptEmail.value;
+    var senha = iptSenha.value;
+    var confirmarSenha = iptConfirmarSenha.value;
+    // atenção
+
+    if (
+      nome == "" ||
+      email == "" ||
+      senha == "" ||
+      confirmarSenha == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "Preencha corretamente todos os campos";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    if (nome < 1 || senha < 6 || confirmarSenha != senha || !email.includes('@') || !email.includes('.')) {
+      alert("Informe valores válidos")
+      return;
+    }
+
+    /* Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].id
+        console.log("Código de ativação válido.");
+        break;
+      } else {
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+        finalizarAguardar();
+      }
+    }
+      */
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nome,
+        emailServer: email,
+        senhaServer: senha,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
