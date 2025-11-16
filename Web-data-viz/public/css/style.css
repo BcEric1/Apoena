@@ -104,11 +104,13 @@ a:hover {
     border-radius: 5px;
     font-family: var(--fonte-sans);
     font-family: var(--fonte-sans);
+    transition: all 0.3s ease-in-out;
 }
 
 .botao-principal:hover {
-    opacity: 0.9;
-
+    background-color: var(--cor-texto-principal); 
+    color: white; 
+    transform: scale(1.05); 
 }
 
 .botao-secundario {
