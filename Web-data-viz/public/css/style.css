@@ -1,6 +1,6 @@
 :root {
-    --cor-fundo: #bde0e5;
-    /* Azul claro/verde água */
+    --cor-fundo: #E0F7D9;
+    --cor-fundo-melhoria: #d4a5a5;
     --cor-texto-principal: #5d363d;
     /* Marrom escuro */
     --cor-texto-secundario: #4b666a;
@@ -132,7 +132,7 @@ a:hover {
     left: 0;
     z-index: 1000;
     padding: 20px 0;
-    background-color: rgba(189, 224, 229, 0.95);
+    background-color: var(--cor-fundo);
     backdrop-filter: blur(5px);
 }
 
@@ -193,6 +193,64 @@ a:hover {
     border: 1px;
 
 }
+/*seção sobre melhorias*/
+ .div-melhoria{
+    align-items: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 20px;
+	padding: 40px;
+	background-color: var(--cor-fundo-melhoria);
+	border-radius: 10px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 70rem;
+	margin: 30px auto;
+ }
+
+ .container-melhoria {
+    color: #3d1f24;
+	display: flex;
+	gap: 20px;
+}
+.div-principal{
+    background-color: #f5f9f9; /* Quase branco com tom frio */
+    color: #2d1a1f; /* Texto bem escuro */
+    border-left: 4px solid var(--cor-botao-fundo); 
+	padding: 30px;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(49, 3, 87, 0.1);
+	width: 30rem;
+	text-align: center;
+}
+
+.lista {
+	list-style-position: inside;
+	text-align: justify;
+	padding: 20px;
+	margin-bottom: 10px;
+	line-height: 30px;
+}
+
+.lista li {
+    background-color: #f0f0f0; 
+    padding: 10px 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out; 
+}
+
+.lista li:hover {
+    background-color: var(--cor-texto-principal); 
+    color: white; 
+    transform: scale(1.05); 
+}
+
+.descricao {
+	display: none;
+}
+
+
 
 /* 3. seção Sobre projeto*/
 .secao-sobre {
@@ -289,6 +347,19 @@ a:hover {
     color: var(--cor-texto-secundario);
     margin-bottom: 5px;
 }
+.card_erro {
+	display: none;
+	background-color: #fff;
+	color: black;
+	width: 230px;
+	position: relative;
+	border-radius: 15px;
+	border: #4B2C8C 3px solid;
+	padding: 5px;
+	margin-right: 10%;
+	margin-bottom: 5px;
+}
+
 
 .contato-form input,
 .contato-form textarea {

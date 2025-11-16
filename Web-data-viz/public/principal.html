@@ -1,109 +1,167 @@
-    <!DOCTYPE html>
-    <html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Apoena - Descubra o Prazer de Viajar</title>
-        <link rel="stylesheet" href="./css/style.css">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
-        </style>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoena - Descubra o Prazer de Viajar</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/melhoria.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+    </style>
+</head>
 
-    <body>
-        <!--HEADER AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
+<body>
+    <!--HEADER AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
 
-        <header class="header">
-            <div class="container">
-                <h1 class="logo">Apoena</h1>
-                <nav class="nav">
-                    <a href="#sobre">Quem sou eu</a>
-                    <a href="#contato">Contato</a>
-                    <a href="./quiz/quiz.html">Quiz</a> <!--feito-->
-                </nav>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="#sobre">Sobre mim</a>
+                <a href="./cadastro.html">Cadastro</a>
+                <a href="./login.html">Login</a>
+                <!--<a href="./quiz/quiz.html">Quiz</a>--> <!--feito-->
+            </nav>
+        </div>
+    </header>
+
+    <!--CONTEÚDO AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
+
+    <!-- Melhorias-->
+    <section class="secao-principal">
+        <div class="conteudo-principal">
+            <h2 class="titulo">Abraçe a Natureza</h2>
+        </div>
+    </section>
+
+
+
+    <div class="div-melhoria">
+        <h2>Conheça os benefícios</h2>
+        <div class="container-melhoria">
+            <div class="div-principal">
+                <ul class="lista">
+                    <li onclick="saibaMais(this)">
+                        <span>Redução do Estresse</span>
+                        <p class="descricao">Cantar ajuda a liberar tensões e proporciona um relaxamento mental,
+                            aliviando os efeitos do estresse.</p>
+                    </li>
+                    <li onclick="saibaMais(this)">
+                        <span>Redução da Ansiedade</span>
+                        <p class="descricao">O canto pode acalmar a mente, reduzindo pensamentos acelerados e
+                            promovendo a serenidade.</p>
+                    </li>
+                    <li onclick="saibaMais(this)">
+                        <span>Melhora do Humor</span>
+                        <p class="descricao">A prática do canto libera endorfina e dopamina, neurotransmissores que
+                            melhoram o humor e a sensação de felicidade.</p>
+                    </li>
+
+                    <li onclick="saibaMais(this)">
+                        <span>Fortalecimento do Sistema Imunológico</span>
+                        <p class="descricao">Cantar regularmente pode aumentar a imunidade ao reduzir os níveis de
+                            cortisol, o hormônio do estresse.</p>
+                    </li>
+                </ul>
             </div>
-        </header>
-
-        <!--CONTEÚDO AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
-
-        <section class="secao-principal">
-            <div class="conteudo-principal">
-                <h2 class="titulo">Abraçe a Natureza</h2>
-            </div>
-        </section>
-        <section id="sobre" class="secao-sobre">
-            <div class="container secao-flex">
-                <div class="sobre-image-wrapper">
-                </div>
-                <div class="sobre-text-content">
-                    <h3>Mais sobre mim e meu Projeto</h3>
-                    <p>
-                        Sou apaixonado por viagens e acredito que cada aventura deve ser divertida e inesperada como
-                        abrir um mapa do tesouro!
-                    </p>
-                    <a href="#" class="botao botao-principal">Saiba mais</a>
-                </div>
+            <div class="div-principal">
+                <ul class="lista">
+                    <li onclick="saibaMais(this)">
+                        <span>Melhora na Comunicação</span>
+                        <p class="descricao">Ao cantar, você desenvolve habilidades de articulação e projeção de
+                            voz, melhorando sua comunicação geral.</p>
+                    </li>
+                    <li onclick="saibaMais(this)">
+                        <span>Aumenta a Autoconfiança</span>
+                        <p class="descricao">Aprender a usar sua voz aumenta a confiança em si mesmo e em suas
+                            habilidades.</p>
+                    </li>
+                    <li onclick="saibaMais(this)">
+                        <span>Forma de Expressão Emocional</span>
+                        <p class="descricao">O canto permite que você expresse emoções de forma profunda e
+                            autêntica.</p>
+                    </li>
+                </ul>
             </div>
 
-            <div class="container secao-flex">
-                <div class="sobre-image-wrapper">
-                </div>
-                <div class="sobre-text-content">
-                    <h3>comentáio: contarei mais sobre mim</h3>
-                    <p>
-                        AQUI COMENTAREI 
-                    </p>
-                    <a href="#" class="botao botao-principal">Saiba mais</a>
-                </div>
+        </div><a href="login.html" class="btn-saiba">Cadastre-se agora e descubra seu perfil de Viajante!</a>
+    </div>
+
+
+
+
+    <section id="sobre" class="secao-sobre">
+        <div class="container secao-flex">
+            <div class="sobre-image-wrapper">
             </div>
-            <div class="container secao-flex">
-                <div class="sobre-image-wrapper">
-                </div>
-                <div class="sobre-text-content">
-                    <h3>comentário: Fechar sessão</h3>
-                    <p>
-                        ULTIMAS INFOS
-                    </p>
-                    <a href="#" class="botao botao-principal">Saiba mais</a>
-                </div>
+            <div class="sobre-text-content">
+                <h3>Mais sobre mim e meu Projeto</h3>
+                <p>
+                    Sou apaixonado por viagens e acredito que cada aventura deve ser divertida e inesperada como
+                    abrir um mapa do tesouro!
+                </p>
             </div>
-        </section>
-        <!--<section id="contato" class="secao-contato">
+        </div>
+
+        <div class="container secao-flex">
+            <div class="sobre-image-wrapper">
+            </div>
+            <div class="sobre-text-content">
+                <h3>comentáio: contarei mais sobre mim</h3>
+                <p>
+                    AQUI COMENTAREI
+                </p>
+            </div>
+        </div>
+        <div class="container secao-flex">
+            <div class="sobre-image-wrapper">
+            </div>
+            <div class="sobre-text-content">
+                <h3>comentário: Fechar sessão</h3>
+                <p>
+                    ULTIMAS INFOS
+                </p>
+                <a href="#" class="botao botao-principal">Saiba mais</a>
+            </div>
+        </div>
+    </section>
+    <!--<section id="contato" class="secao-contato">
             <div class="container contato-grid">
             </div>
         IMPLEMENTAR ALGUNS VALORES ONU-->
-        
-        </section>
 
-        <!--FOOTER AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
-        <footer class="footer">
-            <div class="container footer-grid">
-                <div class="footer-titulo">
-                    <h5>Apoena</h5>
-                    <p class="squarespace-note">Feito por Eric Barbosa Costa <br> <a
-                            href="https://github.com/BcEric1">GitHub</a></p>
-                </div>
+    </section>
 
-                <div class="footer-detalhes">
-                    <h5>Localização</h5>
-                    <address>
-                        Rua Haddock Lobo, 595<br>
-                        São Paulo, SP
-                    </address>
-                </div>
-
-                <div class="footer-detalhes">
-                    <h5>Contato</h5>
-                    <p>
-                        <a href="mailto:email@exemplo.com">eric.costa@sptech.school</a><br>
-                        (11) 960799143
-                    </p>
-                </div>
+    <!--FOOTER AQUI /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div class="footer-titulo">
+                <h5>Apoena</h5>
+                <p class="squarespace-note">Feito por Eric Barbosa Costa <br> <a
+                        href="https://github.com/BcEric1">GitHub</a></p>
             </div>
-        </footer>
 
-    </body>
+            <div class="footer-detalhes">
+                <h5>Localização</h5>
+                <address>
+                    Rua Haddock Lobo, 595<br>
+                    São Paulo, SP
+                </address>
+            </div>
 
-    </html>
-    <script src="/public/js/sessao.js"></script>
+            <div class="footer-detalhes">
+                <h5>Contato</h5>
+                <p>
+                    <a href="mailto:eric.costa@sptech.schoool">eric.costa@sptech.school</a><br>
+                    (11) 960799143
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
+<script src="/public/js/sessao.js"></script>
