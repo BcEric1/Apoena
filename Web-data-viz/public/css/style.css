@@ -1,10 +1,8 @@
 :root {
     --cor-fundo: #E0F7D9;
-    --cor-fundo-melhoria: #d4a5a5;
+    --cor-fundo-melhoria: #B6AE9F;
     --cor-texto-principal: #5d363d;
-    /* Marrom escuro */
     --cor-texto-secundario: #4b666a;
-    /* Cinza/Azul sutil para texto normal */
     --cor-botao-fundo: #6c4249;
     --cor-fundo-input: #e0f2f5;
     --fonte-serif: 'Momo Trust Display', serif;

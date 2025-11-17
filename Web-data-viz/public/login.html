@@ -17,7 +17,6 @@
             <h1 class="logo">Apoena</h1>
             <nav class="nav">
                 <a href="./principal.html">Home</a>
-                <a href="./cadastro.html">Cadastro</a>
                 <a href="./login.html">Login</a>
                 <!--<a href="./quiz/quiz.html">Quiz</a>--> <!--feito-->
             </nav>
@@ -25,7 +24,7 @@
     </header>
 
     <div class="wrapper">
-        <form action="" id="formularioCadastro">
+        <div action="" id="formularioCadastro">
             <h1>Login</h1>
             <div class="input-caixa">
                 <input type="text" placeholder="Email" id="iptEmail">
@@ -41,18 +40,17 @@
                 <div class="card_erro" id="cardErro">
                     <span id="mensagem_erro"></span>
                 </div>
-                <button type="submit" class="button">Login</button>
+                <button onclick="entrar()" class="button">Entrar</button><br>
+                <a href="./cadastro.html">
+                    <button class="button">Não possui Cadastro?</button>
+                </a>
 
-        </form>
-    </div>
+            </div>
+        </div>
 </body>
 
 </html>
 <script>
-    document.getElementById("formularioCadastro").addEventListener("submit", function (event) {
-        event.preventDefault(); // Impede o recarregamento da página
-        entrar()
-    });
     function entrar() {
         //aguardar();
 
@@ -87,6 +85,12 @@
             if (resposta.ok) {
                 console.log(resposta);
 
+                if (resposta.ok) {
+                    cardErro.style.display = "block";
+
+                    mensagem_erro.innerHTML =
+                        "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+                }
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
