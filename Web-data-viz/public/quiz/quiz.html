@@ -1,33 +1,100 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Perfil de Viajante</title>
-    <link rel="stylesheet" href="/quiz/style.css">
+    <title>Exemplo - Quiz</title>
+    <link rel="stylesheet" href="../css/quiz.css"> 
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+  </style>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
-<body>
 
-    <div class="container">
-        <h1>Exemplo de perguntas</h1>
-        <!--<h1>Seu Perfil de Viajante</h1>-->
-        
-        <div id="quiz-area">
-            </div>
-
-        <div id="resultado-area" class="hidden">
-            
-            <h2>Resultado</h2>
-            <p id="perfil-resultado"></p>
-            <p id="pegada-resultado"></p>
-            <h3>Dashboard (Dados Brutos)</h3>
-            <pre id="dados-brutos"></pre>
-            <button class="botao botao-principal">
-                <a href="/principal.html">Voltar à página  </a>
-            </button>
+<body onload="onloadEsconder(); validarSessao()">
+   
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="../principal.html">Home</a>
+                <a href="javascript:limparSessao()">Sair</a>
+            </nav>
         </div>
+    </header>
+
+    <div class="quiz-container">
+
+        <div id="pontuacaoEJogo" class="flex-coluna">
+            <button id="btnIniciarQuiz" onclick="iniciarQuiz()">INICIAR QUIZ</button>
+
+            <div id="pontuacao" class="flex-coluna margem"> 
+                
+                <div id="pontuacaoDuranteJogo" class="padding">
+                    <span class="ajustar-conteudo">Quantidade de acertos: <span id="spanCertas" class="feedback-sucesso texto-negrito"></span></span>
+                    <span class="ajustar-conteudo">Quantidade de erros: <span id="spanErradas" class="feedback-perigo texto-negrito"></span></span>
+                </div>
+
+                <div id="pontuacaoFinalJogo" class="padding flex-coluna">
+                    <span class="ajustar-conteudo texto-negrito">
+                        Pontuação Final: <span id="spanPontuacaoFinal"></span>
+                    </span>
+                    <div id="msgFinalContainer" class="padding">
+                         <span id="msgFinal"></span>
+                    </div>
+                </div>
+                </div>
+
+            <div id="jogo" class="flex-coluna"> 
+
+                <div id="infoQuestao" class="padding margem">
+                    <span class="texto-negrito">Questão atual: <span id="spanNumeroDaQuestaoAtual"></span> de <span id="qtdQuestoes"></span>
+                        questões.</span>
+                </div>
+
+                <div id="perguntaDaQuestaoAtual" class="padding">
+                    <span id="spanQuestaoExibida" class="pergunta-titulo"></span>
+                </div>
+
+                <div id="infoAlternativas" class="padding">
+                    <span class="texto-secundario"><em>Escolha uma opção dentre as abaixo:</em></span>
+                </div>
+
+                <div id="opcoes" class="flex-coluna padding">
+                    
+                    <label for="radioA" class="opcao-resposta" id="labelRespostaA"> 
+                        <input type="radio" id="radioA" name="option" class="radio" value="alternativaA" />
+                        <span id="labelOpcaoUm"></span>
+                    </label>
+                    
+                    <label for="radioB" class="opcao-resposta" id="labelRespostaB">
+                        <input type="radio" id="radioB" name="option" class="radio" value="alternativaB" />
+                        <span id="labelOpcaoDois"></span>
+                    </label>
+                    
+                    <label for="radioC" class="opcao-resposta" id="labelRespostaC">
+                        <input type="radio" id="radioC" name="option" class="radio" value="alternativaC" />
+                        <span id="labelOpcaoTres"></span>
+                    </label>
+                    
+                    <label for="radioD" class="opcao-resposta" id="labelRespostaD">
+                        <input type="radio" id="radioD" name="option" class="radio" value="alternativaD" />
+                        <span id="labelOpcaoQuatro"></span>
+                    </label>
+                </div>
+
+                <div id="botoes" class="flex-coluna padding">
+                    <button onclick="submeter()" id="btnSubmeter">Submeter resposta</button>
+                    <button onclick="avancar()" id="btnProximo" disabled>Avançar para próxima questão</button>
+                    <button onclick="finalizar()" id="btnConcluir" disabled style="display: none;">Finalizar Quiz</button> 
+                    <button onclick="tentarNovamente()" id="btnTentarNovamente" disabled>Tentar novamente</button>
+                </div>
+
+            </div>
+            </div>
     </div>
-    
-    <script src="/js/script.js"></script>
 </body>
+
 </html>
