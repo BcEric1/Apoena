@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Perfil - Apoena</title>
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Momo+Trust+Display&display=swap');
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/dashboard.js" defer></script>
+    <script src="../js/sessao.js"></script>
+</head>
+
+<body onload="validarSessao()">
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Apoena</h1>
+            <nav class="nav">
+                <a href="../principal.html">Home</a>
+                <a href="../quiz/quiz.html">Refazer Quiz</a>
+                <a href="javascript:limparSessao()">Sair</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="dashboard-container">
+
+        <!-- Título -->
+        <div class="titulo-dashboard">
+            <h2>Seu Perfil de Viajante</h2>
+            <p class="subtitulo">Descubra suas características e tendências</p>
+        </div>
+
+        <!-- card principal sobre o perfil -->
+        <div class="perfil-principal">
+            <div class="perfil-icone" id="perfilIcone"></div>
+            <div class="perfil-info">
+                <h3 id="perfilNome">Eco-Aventureiro</h3>
+                <p id="perfilDescricao">Você busca experiências autênticas com consciência ambiental</p>
+            </div>
+        </div>
+
+        <!-- características -->
+        <div class="cards-caracteristicas">
+            
+            <div class="card-caracteristica">
+                <div class="card-header">
+                    <span class="icone"></span>
+                    <h4>Consciência Ambiental</h4>
+                </div>
+                <div class="nivel-barra">
+                    <div class="barra-progresso" id="barraAmbiental" style="width: 0%"></div>
+                </div>
+                <p class="nivel-texto" id="nivelAmbiental">Calculando...</p>
+            </div>
+
+            <div class="card-caracteristica">
+                <div class="card-header">
+                    <span class="icone"></span>
+                    <h4>Espírito de Aventura</h4>
+                </div>
+                <div class="nivel-barra">
+                    <div class="barra-progresso" id="barraAventura" style="width: 0%"></div>
+                </div>
+                <p class="nivel-texto" id="nivelAventura">Calculando...</p>
+            </div>
+
+            <div class="card-caracteristica">
+                <div class="card-header">
+                    <span class="icone"></span>
+                    <h4>Interesse Cultural</h4>
+                </div>
+                <div class="nivel-barra">
+                    <div class="barra-progresso" id="barraCultural" style="width: 0%"></div>
+                </div>
+                <p class="nivel-texto" id="nivelCultural">Calculando...</p>
+            </div>
+
+            <div class="card-caracteristica">
+                <div class="card-header">
+                    <span class="icone"></span>
+                    <h4>Preferência por Conforto</h4>
+                </div>
+                <div class="nivel-barra">
+                    <div class="barra-progresso" id="barraConforto" style="width: 0%"></div>
+                </div>
+                <p class="nivel-texto" id="nivelConforto">Calculando...</p>
+            </div>
+
+        </div>
+
+        <!-- gráficos (ainda não inseridos)-->
+        <div class="graficos-container">
+
+            <!-- gráfico 1: (gráfico em pizza)  -->
+            <div class="grafico-card">
+                <div class="grafico-header">
+                    <h3>Distribuição do Seu Perfil</h3>
+                    <p class="grafico-descricao">Como suas características se equilibram</p>
+                </div>
+                <div class="grafico-conteudo">
+                    <canvas id="graficoDistribuicao"></canvas>
+                </div>
+            </div>
+
+            <!-- gráfico 2: (gráfico em barras) -->
+            <div class="grafico-card">
+                <div class="grafico-header">
+                    <h3>Suas Tendências</h3>
+                    <p class="grafico-descricao">Intensidade de cada característica</p>
+                </div>
+                <div class="grafico-conteudo">
+                    <canvas id="graficoTendencias"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- características resultantes -->
+        <div class="detalhes-perfil">
+            <div class="detalhes-header">
+                <h3>Suas Características Principais</h3>
+                <p>Traços identificados baseados nas suas escolhas</p>
+            </div>
+            
+            <div class="lista-caracteristicas" id="listaCaracteristicas">
+                <!-- inserido pelo meu script -->
+            </div>
+        </div>
+
+        <!-- respostas -->
+        <div class="detalhes-questoes">
+            <div class="detalhes-header">
+                <h3>Suas Respostas</h3>
+                <p>Revise as escolhas que definiram seu perfil</p>
+            </div>
+            
+            <div id="listaQuestoes" class="lista-questoes">
+                <!-- inserido da mesma forma acima -->
+            </div>
+        </div>
+
+        <!-- botões de ação -->
+        <div class="acoes-dashboard">
+            <button onclick="refazerQuiz()" class="botao-acao botao-refazer">
+                 Refazer Quiz
+            </button>
+            <button onclick="voltarHome()" class="botao-acao botao-home">
+                 Voltar para Home
+            </button>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
