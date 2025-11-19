@@ -1,0 +1,181 @@
+:root {
+    --verde: #E0F7D9;
+    --marrom: #5d363d;
+    --cinza: #4b666a;
+    --botao: #6c4249;
+    --azul: #e0f2f5;
+    --bege: #B6AE9F;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Momo Trust Display', serif;
+    background-color: var(--verde);
+    color: var(--cinza);
+}
+
+/* cabeçalho */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: var(--verde);
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.8rem;
+    color: var(--marrom);
+    font-weight: bold;
+}
+
+.nav a {
+    margin-left: 20px;
+    color: var(--marrom);
+    text-decoration: none;
+}
+
+/* container */
+.quiz-container {
+    max-width: 800px;
+    margin: 120px auto 50px;
+    padding: 20px;
+}
+
+/* estilizações independentes (para não ter que utilizar estilização inline) */
+.flex-coluna {
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.padding {
+    padding: 20px;
+}
+
+.margem {
+    margin: 20px 0;
+}
+
+.texto-negrito {
+    font-weight: bold;
+}
+
+/* botão de inicialização do quiz */
+#btnIniciarQuiz {
+    background-color: var(--botao);
+    color: white;
+    font-size: 1.3rem;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* cards do quiz*/
+#pontuacao, /*# para chamar o id da minha div*/
+#jogo {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* pontuação */
+#pontuacaoDuranteJogo {
+    background-color: var(--azul);
+    border-radius: 8px;
+}
+
+.feedback-sucesso {
+    color: #4caf50;
+    font-size: 1.3rem;
+}
+
+.feedback-perigo {
+    color: #e74c3c;
+    font-size: 1.3rem;
+}
+
+#pontuacaoFinalJogo {
+    background-color: var(--bege);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#msgFinalContainer {
+    background-color: white;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+/* questões */
+#infoQuestao {
+    background-color: var(--azul);
+    border-radius: 8px;
+    text-align: center;
+}
+
+#perguntaDaQuestaoAtual {
+    background-color: var(--bege);
+    border-radius: 8px;
+    border-left: 5px solid var(--botao);
+}
+
+/* opções do quiz */
+.opcao-resposta {
+    display: flex;
+    padding: 15px 20px;
+    background-color: var(--azul);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.opcao-resposta input {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+}
+
+/* botões */
+#botoes button {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+#btnSubmeter {
+    background-color: var(--botao);
+}
+
+#btnProximo {
+    background-color: #4caf50;
+}
+
+#btnConcluir {
+    background-color: #3498db;
+}
+
+#btnTentarNovamente {
+    background-color: #9b59b6;
+}
+
+button:disabled { /*quando o botão estiver em "false"*/
+    opacity: 0.5;
+}
