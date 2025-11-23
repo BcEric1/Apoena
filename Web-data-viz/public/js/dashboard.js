@@ -1,38 +1,38 @@
-// Dados do quiz
-let dadosQuiz = null;
 const perfis = {
     aventureiro: {
+        //novos emojis para cada perfil
         nome: "Eco-Aventureiro",
-        icone: "",
+        icone: "🌿",
         descricao: "Você busca experiências autênticas com consciência ambiental"
     },
     sustentavel: {
         nome: "Viajante Sustentável",
-        icone: "",
+        icone: "♻️",
         descricao: "Sua prioridade é viajar de forma consciente e responsável"
     },
     confortavel: {
         nome: "Explorador Confortável",
-        icone: "",
+        icone: "✨",
         descricao: "Você valoriza experiências com equilíbrio entre aventura e conforto"
     },
     cultural: {
         nome: "Descobridor Cultural",
-        icone: "",
+        icone: "🏛️",
         descricao: "Você busca imersão cultural e autenticidade local"
     }
 };
 
-window.onload = function () {
+let dadosQuiz;
+let graficoPizza;
+let graficoBarras;
+
+window.onload = inicializarDashboard();
+
+function inicializarDashboard() {
     console.log('Dashboard carregada');
-    carregarDados();
-};
-
-function carregarDados() {
-    console.log('Tentando carregar dados...');
+    
     var dadosArmazenados = sessionStorage.getItem('dadosQuizApoena');
-
-    // verificação de storage vazio
+    
     if (dadosArmazenados == null) {
         console.log('Nenhum dado encontrado');
         alert('Nenhum dado encontrado. Faça o quiz primeiro!');
@@ -41,95 +41,80 @@ function carregarDados() {
         }, 2000);
         return;
     }
-
-    var dadosQuiz = JSON.parse(dadosArmazenados);
-    console.log('Dados carregados com sucesso:', dadosQuiz);
-
-    // validação de conteúdo
-    if (dadosQuiz.respostasDetalhadas && dadosQuiz.respostasDetalhadas.length > 0) {
-        definirPerfil();
-        preencherCaracteristicas();
-        preencherRespostas();
-    } else {
-        // não funfou, passou ->
+    
+    dadosQuiz = JSON.parse(dadosArmazenados);
+    console.log('Dados carregados:', dadosQuiz);
+    
+    if (!dadosQuiz.respostasDetalhadas || dadosQuiz.respostasDetalhadas.length == 0) {
         console.error('Dados incompletos');
         alert('Dados do quiz incompletos. Redirecionando...');
         setTimeout(() => {
             window.location.href = '../quiz/quiz.html';
         }, 2000);
-    }
-}
-
-function definirPerfil() {
-    console.log('Definindo perfil...');
-
-    if (!dadosQuiz || !dadosQuiz.respostasDetalhadas) {
-        console.error('Dados inválidos');
         return;
     }
+    
+    calcularPerfil();
+}
 
-    const caracteristicas = {
+function calcularPerfil() {
+    console.log('Calculando perfil...');
+    
+    var caracteristicas = {
         ambiental: 0,
         aventura: 0,
         cultural: 0,
         conforto: 0
     };
-
-    dadosQuiz.respostasDetalhadas.forEach(resposta => {
-        const valor = resposta.respostaUsuario;
-
-
-        //possível mudanças nos perfis
-        // questão 1
-        if (resposta.numeroQuestao === 1) {
-            if (valor === 'alternativaA') caracteristicas.aventura += 3;
-            if (valor === 'alternativaB') caracteristicas.conforto += 3;
-            if (valor === 'alternativaC') caracteristicas.cultural += 3;
-            if (valor === 'alternativaD') caracteristicas.ambiental += 3;
+    
+    for (var i = 0; i < dadosQuiz.respostasDetalhadas.length; i++) {
+        var resposta = dadosQuiz.respostasDetalhadas[i];
+        var valor = resposta.respostaUsuario;
+        
+        if (resposta.numeroQuestao == 1) {
+            if (valor == 'alternativaA') caracteristicas.aventura += 3;
+            if (valor == 'alternativaB') caracteristicas.conforto += 3;
+            if (valor == 'alternativaC') caracteristicas.cultural += 3;
+            if (valor == 'alternativaD') caracteristicas.ambiental += 3;
         }
-
-        // questão 2
-        if (resposta.numeroQuestao === 2) {
-            if (valor === 'alternativaA') caracteristicas.aventura += 2;
-            if (valor === 'alternativaB') caracteristicas.conforto += 2;
-            if (valor === 'alternativaC') caracteristicas.cultural += 2;
-            if (valor === 'alternativaD') caracteristicas.ambiental += 3;
+        
+        if (resposta.numeroQuestao == 2) {
+            if (valor == 'alternativaA') caracteristicas.aventura += 2;
+            if (valor == 'alternativaB') caracteristicas.conforto += 2;
+            if (valor == 'alternativaC') caracteristicas.cultural += 2;
+            if (valor == 'alternativaD') caracteristicas.ambiental += 3;
         }
-
-        // questão 3
-        if (resposta.numeroQuestao === 3) {
-            if (valor === 'alternativaB') caracteristicas.ambiental += 3;
-            if (valor === 'alternativaC') caracteristicas.cultural += 1;
+        
+        if (resposta.numeroQuestao == 3) {
+            if (valor == 'alternativaB') caracteristicas.ambiental += 3;
+            if (valor == 'alternativaC') caracteristicas.cultural += 1;
         }
-
-        // questão 4
-        if (resposta.numeroQuestao === 4) {
-            if (valor === 'alternativaA') caracteristicas.conforto += 2;
-            if (valor === 'alternativaB') caracteristicas.aventura += 2;
-            if (valor === 'alternativaC') caracteristicas.ambiental += 3;
-            if (valor === 'alternativaD') caracteristicas.aventura += 2;
+        
+        if (resposta.numeroQuestao == 4) {
+            if (valor == 'alternativaA') caracteristicas.conforto += 2;
+            if (valor == 'alternativaB') caracteristicas.aventura += 2;
+            if (valor == 'alternativaC') caracteristicas.ambiental += 3;
+            if (valor == 'alternativaD') caracteristicas.aventura += 2;
         }
-    });
-
-    console.log('Características calculadas:', caracteristicas);
-
-    //  calcula percentuais doos perfis
-    const total = caracteristicas.ambiental + caracteristicas.aventura +
-        caracteristicas.cultural + caracteristicas.conforto;
-
-    const percentuais = {
+    }
+    
+    console.log('Características:', caracteristicas);
+    
+    var total = caracteristicas.ambiental + caracteristicas.aventura + 
+                caracteristicas.cultural + caracteristicas.conforto;
+    
+    var percentuais = {
         ambiental: Math.round((caracteristicas.ambiental / total) * 100),
         aventura: Math.round((caracteristicas.aventura / total) * 100),
         cultural: Math.round((caracteristicas.cultural / total) * 100),
         conforto: Math.round((caracteristicas.conforto / total) * 100)
     };
-
+    
     console.log('Percentuais:', percentuais);
-
-    // perfil predominante
-    let perfilPredominante = 'aventureiro';
-    let maiorValor = caracteristicas.aventura;
-
+    
+    var perfilPredominante = 'aventureiro';
+    var maiorValor = caracteristicas.aventura;
+    
     if (caracteristicas.ambiental > maiorValor) {
         perfilPredominante = 'sustentavel';
         maiorValor = caracteristicas.ambiental;
@@ -141,114 +126,235 @@ function definirPerfil() {
     if (caracteristicas.cultural > maiorValor) {
         perfilPredominante = 'cultural';
     }
+    
+    console.log('Perfil:', perfilPredominante);
+    
+    window.perfilCalculado = {
+        tipo: perfilPredominante,
+        caracteristicas: caracteristicas,
+        percentuais: percentuais,
+        perfil: perfis[perfilPredominante]
+    };
+    
+    enviarParaBackend();
+}
 
-    console.log('Perfil predominante:', perfilPredominante);
+function enviarParaBackend() {
+    console.log('Enviando para backend...');
+    
+    var idUsuario = sessionStorage.ID_USUARIO || sessionStorage.getItem('ID_USUARIO');
+    
+    if (!idUsuario) {
+        console.error('ID do usuário não encontrado no sessionStorage');
+        console.log('sessionStorage completo:', sessionStorage);
+        alert('Aviso: ID do usuário não encontrado. Continuando sem salvar no banco.');
+        exibirDashboard();
+        return;
+    }
+    
+    var dados = {
+        idUsuario: idUsuario,
+        tipoPerfil: window.perfilCalculado.tipo,
+        pontuacaoAmbiental: window.perfilCalculado.caracteristicas.ambiental,
+        pontuacaoAventura: window.perfilCalculado.caracteristicas.aventura,
+        pontuacaoCultural: window.perfilCalculado.caracteristicas.cultural,
+        pontuacaoConforto: window.perfilCalculado.caracteristicas.conforto,
+        percentualAmbiental: window.perfilCalculado.percentuais.ambiental,
+        percentualAventura: window.perfilCalculado.percentuais.aventura,
+        percentualCultural: window.perfilCalculado.percentuais.cultural,
+        percentualConforto: window.perfilCalculado.percentuais.conforto,
+        respostasDetalhadas: dadosQuiz.respostasDetalhadas
+    };
+    
+    fetch('/perfil/cadastrar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(dados)
+    })
+    .then(function(response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Erro ao salvar perfil');
+        }
+    })
+    .then(function(resultado) {
+        console.log('Perfil salvo:', resultado);
+        exibirDashboard();
+    })
+    .catch(function(erro) {
+        console.error('Erro:', erro);
+        alert('Erro ao salvar perfil. Mas você pode ver seus resultados!');
+        exibirDashboard();
+    });
+}
 
-    // atualiza o card principal
-    const perfil = perfis[perfilPredominante];
-    document.getElementById('perfilIcone').textContent = perfil.icone;
-    document.getElementById('perfilNome').textContent = perfil.nome;
-    document.getElementById('perfilDescricao').textContent = perfil.descricao;
+function exibirDashboard() {
+    console.log('Exibindo dashboard...');
+    
+    exibirPerfil();
+    exibirBarras();
+    criarGraficoPizza();
+    criarGraficoBarras();
+    exibirCaracteristicas();
+    exibirRespostas();
+}
 
-    // atualiza as barras
+function exibirPerfil() {
+    var perfil = window.perfilCalculado.perfil;
+    
+    document.getElementById('perfilIcone').innerHTML = perfil.icone;
+    document.getElementById('perfilNome').innerHTML = perfil.nome;
+    document.getElementById('perfilDescricao').innerHTML = perfil.descricao;
+}
+
+function exibirBarras() {
+    var percentuais = window.perfilCalculado.percentuais;
+    
     atualizarBarra('barraAmbiental', 'nivelAmbiental', percentuais.ambiental);
     atualizarBarra('barraAventura', 'nivelAventura', percentuais.aventura);
     atualizarBarra('barraCultural', 'nivelCultural', percentuais.cultural);
     atualizarBarra('barraConforto', 'nivelConforto', percentuais.conforto);
-
-    // salva para gráficos
-    window.percentuaisCaracteristicas = percentuais;
 }
 
 function atualizarBarra(idBarra, idTexto, percentual) {
-    const barra = document.getElementById(idBarra);
-    const texto = document.getElementById(idTexto);
-
-    if (!barra || !texto) {
-        console.error('Elemento não encontrado:', idBarra, idTexto);
-        return;
-    }
-
+    var barra = document.getElementById(idBarra);
+    var texto = document.getElementById(idTexto);
+    
+    if (!barra || !texto) return;
+    
     setTimeout(() => {
         barra.style.width = percentual + '%';
-        let nivel = 'Baixo';
+        
+        var nivel = 'Baixo';
         if (percentual >= 60) nivel = 'Alto';
         else if (percentual >= 30) nivel = 'Moderado';
-
-        texto.textContent = `${nivel} (${percentual}%)`;
+        
+        texto.innerHTML = nivel + ' (' + percentual + '%)';
     }, 300);
 }
 
-function preencherCaracteristicas() {
-    console.log('Preenchendo características...');
-
-    const container = document.getElementById('listaCaracteristicas');
-    if (!container) {
-        console.error('Container de características não encontrado');
-        return;
+// gráfico de pizza
+function criarGraficoPizza() {
+    var ctx = document.getElementById('graficoDistribuicao').getContext('2d');
+    var percentuais = window.perfilCalculado.percentuais;
+    
+    if (graficoPizza) {
+        graficoPizza.destroy();
     }
-    // colocarei imagens ou emojis para identificação
-    const caracteristicas = [
-        { icone: '', texto: 'Valoriza práticas sustentáveis' },
-        { icone: '', texto: 'Busca experiências autênticas' },
-        { icone: '', texto: 'Responsabilidade com o meio ambiente' },
-        { icone: '', texto: 'Prefere mobilidade consciente' }
-    ];
-
-    caracteristicas.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'item-caracteristica';
-        div.innerHTML = `
-            <span class="icone">${item.icone}</span>
-            <p>${item.texto}</p>
-        `;
-        container.appendChild(div);
+    
+    graficoPizza = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Consciência Ambiental', 'Espírito de Aventura', 'Interesse Cultural', 'Preferência por Conforto'],
+            datasets: [{
+                data: [percentuais.ambiental, percentuais.aventura, percentuais.cultural, percentuais.conforto],
+                backgroundColor: ['#4caf50', '#ff9800', '#9c27b0', '#3498db'],
+                borderWidth: 2,
+                borderColor: '#fff'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
     });
 }
 
-function preencherRespostas() {
-    console.log('Preenchendo respostas...');
-
-    if (!dadosQuiz || !dadosQuiz.respostasDetalhadas) {
-        console.error('Sem dados de respostas');
-        return;
+// gráfico de barras
+function criarGraficoBarras() {
+    var ctx = document.getElementById('graficoTendencias').getContext('2d');
+    var percentuais = window.perfilCalculado.percentuais;
+    
+    if (graficoBarras) {
+        graficoBarras.destroy();
     }
+    
+    graficoBarras = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Ambiental', 'Aventura', 'Cultural', 'Conforto'],
+            datasets: [{
+                label: 'Intensidade (%)',
+                data: [percentuais.ambiental, percentuais.aventura, percentuais.cultural, percentuais.conforto],
+                backgroundColor: ['#4caf50', '#ff9800', '#9c27b0', '#3498db'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+}
 
-    const listaQuestoes = document.getElementById('listaQuestoes');
-    if (!listaQuestoes) {
-        console.error('Container de questões não encontrado');
-        return;
-    }
-
-    listaQuestoes.innerHTML = '';
-
-    dadosQuiz.respostasDetalhadas.forEach((resposta) => {
-        const questaoDiv = document.createElement('div');
-        questaoDiv.className = 'questao-item';
-
-        const textoResposta = resposta.alternativas[resposta.respostaUsuario] || 'Resposta não encontrada';
-
-        questaoDiv.innerHTML = `
-            <span class="questao-numero">Questão ${resposta.numeroQuestao}</span>
-            <div class="questao-pergunta">${resposta.pergunta}</div>
-            <div class="questao-resposta">
-                <strong>Sua escolha:</strong> ${textoResposta}
+function exibirCaracteristicas() {
+    var container = document.getElementById('listaCaracteristicas');
+    
+    //emojis de acordo com a característica
+    var caracteristicas = [
+        { icone: '🌱', texto: 'Valoriza práticas sustentáveis' },
+        { icone: '🎒', texto: 'Busca experiências autênticas' },
+        { icone: '♻️', texto: 'Responsabilidade com o meio ambiente' },
+        { icone: '🚶', texto: 'Prefere mobilidade consciente' }
+    ];
+    
+    container.innerHTML = '';
+    
+    for (var i = 0; i < caracteristicas.length; i++) {
+        container.innerHTML += `
+            <div class="item-caracteristica">
+                <span class="icone">${caracteristicas[i].icone}</span>
+                <p>${caracteristicas[i].texto}</p>
             </div>
         `;
+    }
+}
 
-        listaQuestoes.appendChild(questaoDiv);
-    });
-
-    console.log('Respostas preenchidas com sucesso');
+function exibirRespostas() {
+    var lista = document.getElementById('listaQuestoes');
+    
+    lista.innerHTML = '';
+    
+    for (var i = 0; i < dadosQuiz.respostasDetalhadas.length; i++) {
+        var resposta = dadosQuiz.respostasDetalhadas[i];
+        var textoResposta = resposta.alternativas[resposta.respostaUsuario];
+        
+        lista.innerHTML += `
+            <div class="questao-item">
+                <span class="questao-numero">Questão ${resposta.numeroQuestao}</span>
+                <div class="questao-pergunta">${resposta.pergunta}</div>
+                <div class="questao-resposta">
+                    <strong>Sua escolha:</strong> ${textoResposta}
+                </div>
+            </div>
+        `;
+    }
 }
 
 function refazerQuiz() {
-    console.log('Refazendo quiz...');
     sessionStorage.removeItem('dadosQuizApoena');
     window.location.href = '../quiz/quiz.html';
 }
 
 function voltarHome() {
-    console.log('Voltando para home...');
     window.location.href = '../principal.html';
 }
