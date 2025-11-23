@@ -9,7 +9,7 @@ let listaDeQuestoes = [
     },
     {
         pergunta: "Qual é a sua prioridade ao fazer as malas?",
-        alternativaA: "Equipamentos técnicos e botas de trilha", 
+        alternativaA: "Equipamentos técnicos e botas de trilha",
         alternativaB: "Roupas da moda e acessórios para fotos",
         alternativaC: "Um bom livro e itens de conforto pessoal",
         alternativaD: "Garrafa reutilizável e saco de lixo pessoal",
@@ -25,10 +25,10 @@ let listaDeQuestoes = [
     },
     {
         pergunta: "Para se deslocar em longas distâncias, qual meio de transporte você prefere?",
-        alternativaA: "Avião (mais rápido, mesmo que menos ecológico)", 
-        alternativaB: "Carro próprio ou alugado (liberdade e flexibilidade)", 
-        alternativaC: "Trem ou ônibus (compartilhado e mais eficiente)", 
-        alternativaD: "Barco ou bicicleta (depende da rota, mas é a jornada)", 
+        alternativaA: "Avião (mais rápido, mesmo que menos ecológico)",
+        alternativaB: "Carro próprio ou alugado (liberdade e flexibilidade)",
+        alternativaC: "Trem ou ônibus (compartilhado e mais eficiente)",
+        alternativaD: "Barco ou bicicleta (depende da rota, mas é a jornada)",
         alternativaCorreta: "alternativaC"
     }
 ];
@@ -53,14 +53,14 @@ let respostasDetalhadas = [];
 function onloadEsconder() {
     document.getElementById('pontuacao').style.display = "none";
     document.getElementById('jogo').style.display = "none";
-    document.getElementById('btnConcluir').style.display = "none"; 
+    document.getElementById('btnConcluir').style.display = "none";
 }
 
 function iniciarQuiz() {
     document.getElementById('pontuacao').style.display = "flex";
     document.getElementById('jogo').style.display = "flex";
     document.getElementById('btnIniciarQuiz').style.display = "none";
-    
+
     document.getElementById('spanCertas').innerHTML = certas;
     document.getElementById('spanErradas').innerHTML = erradas;
 
@@ -74,15 +74,15 @@ function iniciarQuiz() {
     btnSubmeter.disabled = false;
     btnProximo.disabled = true;
     btnTentarNovamente.disabled = true;
-    
+
     if (quantidadeDeQuestoes == 1) {
         document.getElementById('btnConcluir').style.display = "block";
     }
 }
 
 function preencherHTMLcomQuestaoAtual(index) {
-    numeroDaQuestaoAtual = index; 
-    
+    numeroDaQuestaoAtual = index;
+
     habilitarAlternativas(true);
     limparCoresBackgroundOpcoes();
     desmarcarRadioButtons();
@@ -104,7 +104,7 @@ function submeter() {
     if (!checagemQuestoes) {
         alert("Não há alternativas escolhidas. Escolha uma opção.");
         return;
-    } 
+    }
 
     habilitarAlternativas(false);
 
@@ -120,7 +120,7 @@ function submeter() {
         // botão finalizar está escondido/desabilitado
         document.getElementById('btnConcluir').style.display = "none";
         btnConcluir.disabled = true;
-        
+
     } else {
         // quando finalizada as questões, o botao de finalizar é habilitado 
         btnProximo.disabled = true;
@@ -145,11 +145,10 @@ function avancar() {
     desmarcarRadioButtons();
     limparCoresBackgroundOpcoes();
 
-    // índice atual ainda é válido?
     if (numeroDaQuestaoAtual < quantidadeDeQuestoes) {
-        
+
         preencherHTMLcomQuestaoAtual(numeroDaQuestaoAtual);
-        
+
         // alert para a última questão
         if (numeroDaQuestaoAtual === quantidadeDeQuestoes - 1) {
             alert("Atenção... esta é a última questão!");
@@ -175,12 +174,12 @@ function checarResposta() {
     let respostaFoiChecada = false;
     let respostaUsuario = null;
     let acertou = false;
-    
+
     opcoes.forEach((option) => {
         if (option.checked) {
             respostaFoiChecada = true;
             respostaUsuario = option.value;
-            
+
             const labelChecadaId = mapLabelId[option.value];
 
             if (option.value === respostaQuestaoAtual) {
@@ -190,16 +189,16 @@ function checarResposta() {
                 acertou = true;
             } else {
                 document.getElementById(labelChecadaId).classList.add("feedback-perigo");
-                
+
                 document.getElementById(alternativaCorretaLabelId).classList.add("feedback-sucesso");
-                
+
                 tentativaIncorreta++;
                 erradas++;
                 acertou = false;
             }
         }
     });
-    
+
     if (respostaFoiChecada) {
         // salva os detalhes da resposta
         respostasDetalhadas.push({
@@ -244,17 +243,17 @@ function finalizarJogo() {
     let textoParaMensagemFinal = null;
     let classComCoresParaMensagemFinal = null;
     const porcentagemFinalDeAcertos = pontuacaoFinal / quantidadeDeQuestoes;
-    
+
     if (porcentagemFinalDeAcertos <= 0.3) {
-        textoParaMensagemFinal = "Parece que você não estudou...";
+        textoParaMensagemFinal = "Parece que você não é consciente";
         classComCoresParaMensagemFinal = "feedback-perigo";
     }
     else if (porcentagemFinalDeAcertos > 0.3 && porcentagemFinalDeAcertos < 0.9) {
         textoParaMensagemFinal = "Pode melhorar na próxima, hein!";
-        classComCoresParaMensagemFinal = "feedback-alerta"; 
+        classComCoresParaMensagemFinal = "feedback-alerta";
     }
     else if (porcentagemFinalDeAcertos >= 0.9) {
-        textoParaMensagemFinal = "Uau, parabéns!";
+        textoParaMensagemFinal = "Parabéns, você é uma pessoa consciente!";
         classComCoresParaMensagemFinal = "feedback-sucesso";
     }
 
@@ -265,29 +264,53 @@ function finalizarJogo() {
 
     document.getElementById('msgFinal').innerHTML = textoCompleto;
     document.getElementById('msgFinalContainer').classList.add(classComCoresParaMensagemFinal);
-    document.getElementById('msgFinalContainer').style.borderRadius = "4px"; 
+    document.getElementById('msgFinalContainer').style.borderRadius = "4px";
 
-    // salva os dados no sessionStorage para a dashboard
+
+    // dados para o fetch
     const dadosQuiz = {
-        pontuacaoFinal: pontuacaoFinal,
+        pontuacaoFinalServer: pontuacaoFinal,
+        idServer: sessionStorage.ID_USUARIO, 
         certas: certas,
         erradas: erradas,
         quantidadeDeQuestoes: quantidadeDeQuestoes,
         porcentagemAcertos: Math.round((porcentagemFinalDeAcertos) * 100),
         respostasDetalhadas: respostasDetalhadas,
-        dataRealizacao: new Date().toLocaleString('pt-BR')
     };
 
+
     sessionStorage.setItem('dadosQuizApoena', JSON.stringify(dadosQuiz));
+    console.log('Dados salvos:', dadosQuiz);
+    
+    fetch(  "/usuarios/quiz", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dadosQuiz)
+    })
+        .then(resposta => {
+            if (resposta.ok) {
+                console.log("Dados salvos com sucesso!");
+            } else {
+                console.error("Houve um erro ao tentar realizar o cadastro do quiz!");
+            }
+        })
+        .catch(erro => {
+            console.log(`#ERRO: ${erro}`);
+        });
 
-    document.getElementById('jogo').style.display = "none"; 
-    document.getElementById('btnConcluir').style.display = "none";
+    document.getElementById('jogo').style.display = "none";
+    if (document.getElementById('btnConcluir')) {
+        document.getElementById('btnConcluir').style.display = "none";
+    }
 
-    btnTentarNovamente.disabled = false;
+    if (typeof btnTentarNovamente !== 'undefined') {
+        btnTentarNovamente.disabled = false;
+    }
 
-    // redireciona para a dashboard após 2 segundos
     setTimeout(() => {
+        alert("Redirecionando para a Dashboard...");
         window.location.href = '../dashboard/dashboard.html';
-        alert("Redirecionando para a Dashboard")
-    }, 3000);
-}9
+    }, 2000);
+}
