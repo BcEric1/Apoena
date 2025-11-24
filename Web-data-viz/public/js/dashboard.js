@@ -240,11 +240,7 @@ function atualizarBarra(idBarra, idTexto, percentual) {
 function criarGraficoPizza() {
     var ctx = document.getElementById('graficoDistribuicao').getContext('2d');
     var percentuais = window.perfilCalculado.percentuais;
-    
-    if (graficoPizza) {
-        graficoPizza.destroy();
-    }
-    
+  
     graficoPizza = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -272,11 +268,7 @@ function criarGraficoPizza() {
 function criarGraficoBarras() {
     var ctx = document.getElementById('graficoTendencias').getContext('2d');
     var percentuais = window.perfilCalculado.percentuais;
-    
-    if (graficoBarras) {
-        graficoBarras.destroy();
-    }
-    
+
     graficoBarras = new Chart(ctx, {
         type: 'bar',
         data: {
