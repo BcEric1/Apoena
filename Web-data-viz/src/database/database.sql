@@ -1,5 +1,5 @@
 CREATE DATABASE apoena;
-USE apoena;
+USE apoena;	
 
 CREATE TABLE usuario (
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
@@ -7,54 +7,33 @@ CREATE TABLE usuario (
     email VARCHAR (255),
     senha VARCHAR(20)
 );
--- TABELA DE PERGUNTAS
-CREATE TABLE pergunta (
-    idPergunta INT NOT NULL PRIMARY KEY,
-    enunciado VARCHAR(255) NOT NULL
-);
 
-
--- TABELA DE RESPOSTAS (pontuacao da pergunta)
-CREATE TABLE respostaQuiz (
-    idResposta INT NOT NULL PRIMARY KEY,
-    idPergunta INT NOT NULL,
-    textoResposta VARCHAR(255) NOT NULL,
+CREATE TABLE perfil (
+    idPerfil INT PRIMARY KEY AUTO_INCREMENT,
+    fkUsuario INT NOT NULL,
+    tipoPerfil VARCHAR(20) NOT NULL,
+    -- pontuações brutas
+    pontuacaoAmbiental INT NOT NULL,
     pontuacaoAventura INT NOT NULL,
-    pontuacaoRelaxamento INT NOT NULL,
-    pontuacaoEcologia INT NOT NULL,
-    FOREIGN KEY (idPergunta) REFERENCES pergunta(idPergunta)
-);
+    pontuacaoCultural INT NOT NULL,
+    pontuacaoConforto INT NOT NULL,
+    -- percentuais
+    percentualAmbiental INT NOT NULL,
+    percentualAventura INT NOT NULL,
+    percentualCultural INT NOT NULL,
+    percentualConforto INT NOT NULL,
+    dataCalculo DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+) AUTO_INCREMENT = 1;
 
-
--- TABELA DE SESSÃO DO QUIZ (pegada ecologica (KPI's))
-CREATE TABLE quiz (
-    idSessao INT PRIMARY KEY AUTO_INCREMENT,
-    idUsuario INT,
-    dtHora TIMESTAMP NOT NULL,
+CREATE TABLE respostaQuiz (
+    idResposta INT PRIMARY KEY AUTO_INCREMENT,
+    fkPerfil INT NOT NULL,
+    numeroQuestao INT NOT NULL,
+    pergunta TEXT NOT NULL,
+    respostaUsuario VARCHAR(20) NOT NULL,
+    respostaCorreta VARCHAR(20) NOT NULL,
+    acertou BOOLEAN NOT NULL,
     
-    -- pontuações totais agregados
-    totalAventura INT NOT NULL,
-    totalRelaxamento INT NOT NULL,
-    totalEcologia INT NOT NULL,
-    perfilFinal VARCHAR(50) NOT NULL
-);
-
-
--- TABELA DE DETALHES DAS RESPOSTAS DO USUÁRIO
-CREATE TABLE respostaUsuario (
-    idSessao INT NOT NULL,
-    idPergunta INT NOT NULL,
-    idResposta INT NOT NULL,
-    
-    PRIMARY KEY (idSessao, idPergunta), 
-    
-    FOREIGN KEY (idSessao) 
-		REFERENCES quiz(idSessao),
-    FOREIGN KEY (idPergunta) 
-		REFERENCES pergunta(idPergunta),
-    FOREIGN KEY (idResposta) 
-		REFERENCES respostaQuiz(idResposta)
-);
-
-select * from usuario;
-truncate usuario;
+    FOREIGN KEY (fkPerfil) REFERENCES perfil(idPerfil)
+) AUTO_INCREMENT = 1;
