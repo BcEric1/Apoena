@@ -86,9 +86,9 @@ function calcularPerfil() {
         }
 
         if (resposta.numeroQuestao == 3) {
-            if (valor == 'alternativaA') caracteristicas.conforto += 3;
-            if (valor == 'alternativaB') caracteristicas.ambiental += 0;
-            if (valor == 'alternativaC') caracteristicas.cultural += 0;
+            if (valor == 'alternativaA') caracteristicas.conforto += 2;
+            if (valor == 'alternativaB') caracteristicas.ambiental += 3;
+            if (valor == 'alternativaC') caracteristicas.cultural += 1;
             if (valor == 'alternativaD') caracteristicas.aventura += 0;
         }
 
@@ -96,32 +96,32 @@ function calcularPerfil() {
             if (valor == 'alternativaA') caracteristicas.conforto += 2;
             if (valor == 'alternativaB') caracteristicas.aventura += 2;
             if (valor == 'alternativaC') caracteristicas.ambiental += 3;
-            if (valor == 'alternativaD') caracteristicas.aventura += 2;
+            if (valor == 'alternativaD') caracteristicas.cultural += 2;
         }
 
         if (resposta.numeroQuestao == 5) {
             if (valor == 'alternativaA') caracteristicas.ambiental += 3;
-            if (valor == 'alternativaB') caracteristicas.ambiental += 2;
-            if (valor == 'alternativaC') caracteristicas.ambiental += 1;
-            if (valor == 'alternativaD') caracteristicas.conforto += 2;
+            if (valor == 'alternativaB') caracteristicas.ambiental += 1;
+            if (valor == 'alternativaC') caracteristicas.conforto += 1;
+            if (valor == 'alternativaD') caracteristicas.conforto += 3;
         }
 
         if (resposta.numeroQuestao == 6) {
             if (valor == 'alternativaA') caracteristicas.conforto += 1;
             if (valor == 'alternativaB') caracteristicas.cultural += 2;
-            if (valor == 'alternativaC') caracteristicas.aventura += 2;
+            if (valor == 'alternativaC') caracteristicas.conforto += 2;
             if (valor == 'alternativaD') caracteristicas.ambiental += 3;
         }
 
         if (resposta.numeroQuestao == 7) {
-            if (valor == 'alternativaA') caracteristicas.ambiental += 2;
-            if (valor == 'alternativaB') caracteristicas.ambiental += 1;
-            if (valor == 'alternativaC') caracteristicas.conforto += 1;
+            if (valor == 'alternativaA') caracteristicas.ambiental += 3;
+            if (valor == 'alternativaB') caracteristicas.ambiental += 2;
+            if (valor == 'alternativaC') caracteristicas.conforto += 2;
             if (valor == 'alternativaD') caracteristicas.ambiental += 3;
         }
 
         if (resposta.numeroQuestao == 8) {
-            if (valor == 'alternativaA') caracteristicas.conforto += 1;
+            if (valor == 'alternativaA') caracteristicas.aventura += 2;
             if (valor == 'alternativaB') caracteristicas.ambiental += 3;
             if (valor == 'alternativaC') caracteristicas.aventura += 1;
             if (valor == 'alternativaD') caracteristicas.ambiental += 2;
@@ -136,8 +136,8 @@ function calcularPerfil() {
 
         if (resposta.numeroQuestao == 10) {
             if (valor == 'alternativaA') caracteristicas.conforto += 3;
-            if (valor == 'alternativaB') caracteristicas.ambiental += 2;
-            if (valor == 'alternativaC') caracteristicas.cultural += 1;
+            if (valor == 'alternativaB') caracteristicas.conforto += 2;
+            if (valor == 'alternativaC') caracteristicas.conforto += 1;
             if (valor == 'alternativaD') caracteristicas.ambiental += 3;
         }
     }
@@ -348,7 +348,7 @@ function exibirCaracteristicas() {
     //emojis de acordo com a característica
     var caracteristicas = [
         { icone: '🌱', texto: 'Valoriza práticas sustentáveis' },
-        { icone: '🎒', texto: 'Busca experiências autênticas' },
+        { icone: '🎒', texto: 'Busca experiências únicas' },
         { icone: '♻️', texto: 'Responsabilidade com o meio ambiente' },
         { icone: '🚶', texto: 'Prefere mobilidade consciente' }
     ];
