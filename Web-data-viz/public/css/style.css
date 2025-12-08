@@ -222,6 +222,10 @@ a:hover {
 	width: 30rem;
 	text-align: center;
 }
+.div-principal img {
+    height: auto;
+    justify-items: center;
+}
 
 .lista {
 	list-style-position: inside;
@@ -274,7 +278,7 @@ a:hover {
     min-height: 600px;
     background-color: #ccc;
 
-    background-image: url('/assets/2.jpg');
+    background-image: url('/assets/eu.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -284,7 +288,7 @@ a:hover {
 }
 
 .secao-sobre .secao-flex:nth-child(even) .sobre-image-wrapper {
-    background-image: url('/assets/2.jpg');
+    background-image: url('/assets/TataEu.jpg');
 }
 
 
@@ -299,13 +303,6 @@ a:hover {
     color: var(--cor-texto-secundario);
     line-height: 1.8;
 }
-
-/* 4. Seção de Contato*/
-.secao-contato {
-    padding: 100px 0;
-    background-color: var(--cor-fundo);
-}
-
 
 /* rodapé*/
 .footer {

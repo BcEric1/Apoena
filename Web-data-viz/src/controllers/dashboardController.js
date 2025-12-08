@@ -51,7 +51,7 @@ function cadastrarPerfil(req, res) {
         
         var idPerfil = resultado.insertId;
         
-        // Se tiver respostas detalhadas, salva também
+        // Se tiver respostas detalha   das, salva também
         if (respostasDetalhadas && respostasDetalhadas.length > 0) {
             return perfilModel.cadastrarRespostas(idPerfil, respostasDetalhadas)
                 .then(function() {

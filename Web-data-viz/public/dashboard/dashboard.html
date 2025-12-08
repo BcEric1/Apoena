@@ -46,7 +46,7 @@
 
         <!-- características -->
         <div class="cards-caracteristicas">
-            
+
             <div class="card-caracteristica">
                 <div class="card-header">
                     <span class="icone"></span>
@@ -126,19 +126,19 @@
                 <h3>Suas Características Principais</h3>
                 <p>Traços identificados baseados nas suas escolhas</p>
             </div>
-            
+
             <div class="lista-caracteristicas" id="listaCaracteristicas">
                 <!-- inserido pelo meu script -->
             </div>
         </div>
 
         <!-- respostas -->
-        <div class="detalhes-questoes">
+        <div class="detalhes-questoes " id="conteudo-oculto">
             <div class="detalhes-header">
-                <h3>Suas Respostas</h3>
+
                 <p>Revise as escolhas que definiram seu perfil</p>
             </div>
-            
+
             <div id="listaQuestoes" class="lista-questoes">
                 <!-- inserido da mesma forma acima -->
             </div>
@@ -147,10 +147,13 @@
         <!-- botões de ação -->
         <div class="acoes-dashboard">
             <button onclick="refazerQuiz()" class="botao-acao botao-refazer">
-                 Refazer Quiz
+                Refazer Quiz
             </button>
             <button onclick="voltarHome()" class="botao-acao botao-home">
-                 Voltar para Home
+                Voltar para Home
+            </button>
+            <button onclick="mostrarDetalhes()" class="botao-acao" style="justify-content: center;">
+                Suas Respostas
             </button>
         </div>
 

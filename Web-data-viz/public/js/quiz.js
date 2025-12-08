@@ -30,6 +30,54 @@ let listaDeQuestoes = [
         alternativaC: "Trem ou ônibus (compartilhado e mais eficiente)",
         alternativaD: "Barco ou bicicleta (depende da rota, mas é a jornada)",
         alternativaCorreta: "alternativaC"
+    },
+    {
+        pergunta: "Qual a sua atitude em relação ao consumo de carne?",
+        alternativaA: "Não como carne. Minha alimentação é totalmente baseada em vegetais.",
+        alternativaB: "Compro carne apenas de fornecedores locais e com foco em bem-estar animal.",
+        alternativaC: "Reduzi bastante o consumo, mas ainda como algumas vezes na semana.",
+        alternativaD: "Não me preocupo com isso e como quando tenho vontade.",
+        alternativaCorreta: "alternativaA"
+    },
+    {
+        pergunta: "Ao comprar um produto novo (roupa, eletrônico, etc.), qual o fator mais importante?",
+        alternativaA: "O preço mais baixo, buscando a melhor promoção.",
+        alternativaB: "A reputação da marca e o design moderno.",
+        alternativaC: "A durabilidade e a garantia de longo prazo do item.",
+        alternativaD: "A informação sobre a origem dos materiais e a ética de produção (fair trade).",
+        alternativaCorreta: "alternativaD"
+    },
+    {
+        pergunta: "Em casa, como você lida com o lixo e a separação de resíduos?",
+        alternativaA: "Separo todo o lixo reciclável e orgânico em recipientes próprios.",
+        alternativaB: "Separo apenas o que é muito fácil (plástico, papel), o resto vai junto.",
+        alternativaC: "Não tenho tempo para separar o lixo, coloco tudo no mesmo saco.",
+        alternativaD: "Eu compostagem meu lixo orgânico e reciclo todo o restante.",
+        alternativaCorreta: "alternativaD"
+    },
+    {
+        pergunta: "Durante uma caminhada na natureza ou na praia, você vê uma espécie de animal silvestre (não doméstica). Qual a sua reação?",
+        alternativaA: "Tento me aproximar para tirar uma foto ou tocar.",
+        alternativaB: "Observo de longe e respeito o espaço do animal.",
+        alternativaC: "Se for perigoso, dou a volta e ignoro. Se for fofo, tento interagir.",
+        alternativaD: "Observo de longe e tento pesquisar no meu celular sobre a espécie e seu habitat.",
+        alternativaCorreta: "alternativaB"
+    },
+    {
+        pergunta: "Qual tipo de hospedagem você prefere em uma viagem?",
+        alternativaA: "Grandes redes hoteleiras que oferecem muitos serviços e luxo.",
+        alternativaB: "Hotéis-boutique ou pousadas que valorizam a arquitetura local.",
+        alternativaC: "Airbnb ou casa de amigos, para ter mais liberdade e economizar.",
+        alternativaD: "Hospedagens que possuem certificação de sustentabilidade ou utilizam energia renovável.",
+        alternativaCorreta: "alternativaD"
+    },
+    {
+        pergunta: "Seu smartphone quebrou. O que você faz?",
+        alternativaA: "Compro o modelo mais recente imediatamente, sem pensar duas vezes.",
+        alternativaB: "Pesquiso opções de conserto, tentando prolongar a vida útil do aparelho.",
+        alternativaC: "Compro um modelo mais antigo ou recondicionado para economizar.",
+        alternativaD: "Conserto, e se não for possível, busco uma loja que recicle o aparelho antigo.",
+        alternativaCorreta: "alternativaD"
     }
 ];
 
@@ -194,7 +242,7 @@ function checarResposta() {
 
                 tentativaIncorreta++;
                 erradas++;
-                acertou = false;
+                acertou = false;                                                    
             }
         }
     });
@@ -270,7 +318,7 @@ function finalizarJogo() {
     // dados para o fetch
     const dadosQuiz = {
         pontuacaoFinalServer: pontuacaoFinal,
-        idServer: sessionStorage.ID_USUARIO, 
+        idServer: sessionStorage.ID_USUARIO,
         certas: certas,
         erradas: erradas,
         quantidadeDeQuestoes: quantidadeDeQuestoes,
@@ -281,8 +329,8 @@ function finalizarJogo() {
 
     sessionStorage.setItem('dadosQuizApoena', JSON.stringify(dadosQuiz));
     console.log('Dados salvos:', dadosQuiz);
-    
-    fetch(  "/usuarios/quiz", {
+
+    fetch("/usuarios/quiz", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
